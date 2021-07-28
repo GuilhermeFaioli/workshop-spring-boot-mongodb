@@ -38,4 +38,14 @@ public class UserService {
 		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
 	
+	public User update(User obj) {
+		User user = findById(obj.getId());
+		updateData(user, obj);
+		return repository.save(user);
+	}
+
+	private void updateData(User user, User obj) {
+		user.setName(obj.getName());
+		user.setEmail(obj.getEmail());
+	}
 }
